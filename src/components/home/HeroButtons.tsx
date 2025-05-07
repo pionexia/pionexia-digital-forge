@@ -21,7 +21,7 @@ const HeroButtons = () => {
         asChild
       >
         <Link to="/devis">
-          {t('hero.cta.quote', 'Demander un devis')}
+          {t('hero.cta.quote')}
         </Link>
       </Button>
       
@@ -31,7 +31,7 @@ const HeroButtons = () => {
         className="border-pionexia-blue text-pionexia-blue hover:bg-pionexia-blue/10"
         onClick={scrollToContact}
       >
-        {t('hero.cta.contact', 'Nous contacter')}
+        {t('hero.cta.contact')}
       </Button>
       
       <Button 
@@ -41,7 +41,7 @@ const HeroButtons = () => {
         asChild
       >
         <Link to="/realisations">
-          {t('hero.cta.portfolio', 'Voir nos réalisations')}
+          {t('hero.cta.portfolio')}
         </Link>
       </Button>
     </div>
