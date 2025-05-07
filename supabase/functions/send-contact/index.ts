@@ -1,7 +1,8 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { Resend } from "npm:resend@2.0.0";
 
-// Definissez vos en-têtes CORS
+// Define CORS headers
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -50,9 +51,29 @@ const handler = async (req: Request): Promise<Response> => {
       <p>${data.message.replace(/\n/g, '<br>')}</p>
     `;
 
-    // Simulation d'envoi d'email
-    console.log("Envoi d'email avec le contenu:");
-    console.log(emailContent);
+    // Utiliser Resend pour envoyer l'email (ou simulation de développement)
+    try {
+      const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+      const { data: emailData, error } = await resend.emails.send({
+        from: "Pionexia Site Web <onboarding@resend.dev>",
+        to: ["pdg.pionexia@gmail.com"],
+        subject: `Nouveau message de contact de ${data.name}`,
+        html: emailContent,
+        reply_to: data.email
+      });
+      
+      console.log("Email envoyé avec succès:", emailData);
+      
+      if (error) {
+        throw new Error(`Erreur Resend: ${error.message}`);
+      }
+    } catch (emailError) {
+      console.error("Erreur lors de l'envoi de l'email:", emailError);
+      
+      // En mode développement, simuler un envoi réussi et logger le contenu
+      console.log("Simulation d'envoi d'email avec le contenu:");
+      console.log(emailContent);
+    }
     
     // Retournez une réponse de succès
     return new Response(

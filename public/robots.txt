@@ -1,14 +1,32 @@
+
+# Pionexia - Robots.txt
+# Allow all search engine robots to access the entire site
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://pionexia.com/sitemap.xml
+
+# Specific rules for major search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
+User-agent: Baiduspider
 Allow: /
 
-User-agent: facebookexternalhit
+User-agent: Yandex
 Allow: /
 
-User-agent: *
+User-agent: DuckDuckBot
 Allow: /
+
+# Prevent crawling of certain files
+Disallow: /private/
+Disallow: /admin/
+Disallow: /backup/
+Disallow: *.json$
+Disallow: /*.js$
+Disallow: /*.css$

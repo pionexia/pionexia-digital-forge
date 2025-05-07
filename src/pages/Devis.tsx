@@ -12,6 +12,7 @@ import { Progress } from "@/components/ui/progress";
 import { Mail, User, Building, Phone, MessageSquare } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SEO from "@/components/layout/SEO";
 import { supabase } from "@/integrations/supabase/client";
 
 const Devis = () => {
@@ -115,6 +116,11 @@ const Devis = () => {
   
   return (
     <div className="min-h-screen bg-white dark:bg-pionexia-dark">
+      <SEO 
+        title="Demander un devis | Pionexia"
+        description="Obtenez un devis personnalisé pour votre projet de développement web, mobile ou solution IA. Parlez-nous de votre projet et laissez-nous vous aider à le concrétiser."
+        type="website"
+      />
       <Navbar />
       <main className="pt-24 pb-16">
         <div className="container max-w-4xl mx-auto">
@@ -295,10 +301,10 @@ const Devis = () => {
                         <SelectValue placeholder="Sélectionnez un délai" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="urgent">Urgent ({'<'} 2 semaines)</SelectItem>
+                        <SelectItem value="urgent">Urgent (moins de 2 semaines)</SelectItem>
                         <SelectItem value="soon">Rapide (2-4 semaines)</SelectItem>
                         <SelectItem value="normal">Standard (1-2 mois)</SelectItem>
-                        <SelectItem value="flexible">Flexible ({'>'} 2 mois)</SelectItem>
+                        <SelectItem value="flexible">Flexible (plus de 2 mois)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

@@ -7,6 +7,7 @@ import SolutionsSection from "../components/home/SolutionsSection";
 import WhyUsSection from "../components/home/WhyUsSection";
 import ContactSection from "../components/home/ContactSection";
 import Footer from "../components/layout/Footer";
+import SEO from "../components/layout/SEO";
 
 const Index = () => {
   useEffect(() => {
@@ -39,6 +40,10 @@ const Index = () => {
   
   return (
     <div className="min-h-screen bg-white dark:bg-pionexia-dark">
+      <SEO 
+        title="Pionexia | Agence de Développement Web, Mobile et Solutions IA"
+        description="Pionexia est une agence digitale innovante spécialisée dans le développement web, mobile et les solutions IA sur mesure pour transformer votre vision en réalité."
+      />
       <Navbar />
       <main>
         <HeroSection />

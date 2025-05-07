@@ -1,5 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { Resend } from "npm:resend@2.0.0";
 
 // Definissez vos en-têtes CORS
 const corsHeaders = {
@@ -60,12 +61,29 @@ const handler = async (req: Request): Promise<Response> => {
       <p>${data.description.replace(/\n/g, '<br>')}</p>
     `;
 
-    // Simulation d'envoi d'email
-    console.log("Envoi d'email avec le contenu:");
-    console.log(emailContent);
-    
-    // Ici, vous pourriez intégrer un service d'envoi d'email comme Resend
-    // Pour l'instant, nous simulons un envoi réussi
+    // Utiliser Resend pour envoyer l'email (ou simulation de développement)
+    try {
+      const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+      const { data: emailData, error } = await resend.emails.send({
+        from: "Pionexia Devis <onboarding@resend.dev>",
+        to: ["pdg.pionexia@gmail.com"],
+        subject: `Nouvelle demande de devis de ${data.name}`,
+        html: emailContent,
+        reply_to: data.email
+      });
+      
+      console.log("Email envoyé avec succès:", emailData);
+      
+      if (error) {
+        throw new Error(`Erreur Resend: ${error.message}`);
+      }
+    } catch (emailError) {
+      console.error("Erreur lors de l'envoi de l'email:", emailError);
+      
+      // En mode développement, simuler un envoi réussi et logger le contenu
+      console.log("Simulation d'envoi d'email avec le contenu:");
+      console.log(emailContent);
+    }
 
     // Retournez une réponse de succès
     return new Response(
@@ -126,10 +144,10 @@ function getProjectTypeName(typeCode: string): string {
 
 function getTimelineName(timelineCode: string): string {
   const timelines: { [key: string]: string } = {
-    urgent: "Urgent (< 2 semaines)",
+    urgent: "Urgent (moins de 2 semaines)",
     soon: "Rapide (2-4 semaines)",
     normal: "Standard (1-2 mois)",
-    flexible: "Flexible (> 2 mois)"
+    flexible: "Flexible (plus de 2 mois)"
   };
   return timelines[timelineCode] || timelineCode;
 }

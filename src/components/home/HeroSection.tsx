@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { Code, Smartphone, Brain } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -44,14 +45,14 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-pionexia-blue hover:bg-pionexia-blue/90 text-white">
-                {t("hero.cta.quote")}
+              <Button size="lg" className="bg-pionexia-blue hover:bg-pionexia-blue/90 text-white" asChild>
+                <Link to="/devis">{t("hero.cta.quote")}</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-pionexia-blue text-pionexia-blue hover:bg-pionexia-blue/10">
-                {t("hero.cta.contact")}
+              <Button size="lg" variant="outline" className="border-pionexia-blue text-pionexia-blue hover:bg-pionexia-blue/10" asChild>
+                <Link to="/#contact">{t("hero.cta.contact")}</Link>
               </Button>
-              <Button size="lg" variant="link" className="text-pionexia-blue">
-                {t("hero.cta.portfolio")}
+              <Button size="lg" variant="link" className="text-pionexia-blue" asChild>
+                <Link to="/realisations">{t("hero.cta.portfolio")}</Link>
               </Button>
             </div>
             
