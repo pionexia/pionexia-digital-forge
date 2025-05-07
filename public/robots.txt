@@ -27,6 +27,3 @@ Allow: /
 Disallow: /private/
 Disallow: /admin/
 Disallow: /backup/
-Disallow: *.json$
-Disallow: /*.js$
-Disallow: /*.css$
