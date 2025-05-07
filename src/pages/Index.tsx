@@ -1,12 +1,53 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from "react";
+import Navbar from "../components/layout/Navbar";
+import HeroSection from "../components/home/HeroSection";
+import ServicesSection from "../components/home/ServicesSection";
+import SolutionsSection from "../components/home/SolutionsSection";
+import WhyUsSection from "../components/home/WhyUsSection";
+import ContactSection from "../components/home/ContactSection";
+import Footer from "../components/layout/Footer";
 
 const Index = () => {
+  useEffect(() => {
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll(".slide-up");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-pionexia-dark">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <SolutionsSection />
+        <WhyUsSection />
+        <ContactSection />
+      </main>
+      <Footer />
     </div>
   );
 };
