@@ -51,16 +51,19 @@ const Navbar = () => {
           <Link to="/" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
             Accueil
           </Link>
-          <a href="#services" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
+          <a href="/#services" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
             Services
           </a>
-          <a href="#solutions-ia" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
+          <a href="/#solutions-ia" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
             Solutions IA
           </a>
-          <a href="#why-us" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
+          <Link to="/realisations" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
+            Réalisations
+          </Link>
+          <a href="/#why-us" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
             Pourquoi nous
           </a>
-          <a href="#contact" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
+          <a href="/#contact" className="text-sm font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors">
             Contact
           </a>
           <LanguageSwitcher />
@@ -72,8 +75,8 @@ const Navbar = () => {
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </Button>
-          <Button className="bg-pionexia-blue hover:bg-pionexia-blue/90 text-white">
-            Demander un devis
+          <Button className="bg-pionexia-blue hover:bg-pionexia-blue/90 text-white" asChild>
+            <Link to="/devis">Demander un devis</Link>
           </Button>
         </nav>
 
@@ -110,35 +113,45 @@ const Navbar = () => {
                 Accueil
               </Link>
               <a 
-                href="#services" 
+                href="/#services" 
                 className="text-lg font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </a>
               <a 
-                href="#solutions-ia" 
+                href="/#solutions-ia" 
                 className="text-lg font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Solutions IA
               </a>
+              <Link 
+                to="/realisations" 
+                className="text-lg font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Réalisations
+              </Link>
               <a 
-                href="#why-us" 
+                href="/#why-us" 
                 className="text-lg font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pourquoi nous
               </a>
               <a 
-                href="#contact" 
+                href="/#contact" 
                 className="text-lg font-medium hover:text-pionexia-blue dark:hover:text-pionexia-blue transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </a>
-              <Button className="bg-pionexia-blue hover:bg-pionexia-blue/90 text-white w-full mt-4">
-                Demander un devis
+              <Button 
+                className="bg-pionexia-blue hover:bg-pionexia-blue/90 text-white w-full mt-4"
+                asChild
+              >
+                <Link to="/devis" onClick={() => setIsMenuOpen(false)}>Demander un devis</Link>
               </Button>
             </nav>
           </div>
