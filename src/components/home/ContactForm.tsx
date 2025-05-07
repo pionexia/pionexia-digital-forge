@@ -87,8 +87,8 @@ const ContactForm = () => {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <User size={16} />
-          <label htmlFor="name" className="text-sm font-medium">
+          <User size={16} className="text-pionexia-blue" />
+          <label htmlFor="name" className="text-sm font-medium dark:text-gray-200">
             Nom complet <span className="text-red-500">*</span>
           </label>
         </div>
@@ -99,14 +99,15 @@ const ContactForm = () => {
           onChange={handleChange}
           placeholder="Votre nom"
           required
+          className="dark:bg-pionexia-dark-secondary/50 dark:border-gray-700 dark:text-white"
         />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <Mail size={16} />
-            <label htmlFor="email" className="text-sm font-medium">
+            <Mail size={16} className="text-pionexia-blue" />
+            <label htmlFor="email" className="text-sm font-medium dark:text-gray-200">
               Email <span className="text-red-500">*</span>
             </label>
           </div>
@@ -118,13 +119,14 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="votre@email.com"
             required
+            className="dark:bg-pionexia-dark-secondary/50 dark:border-gray-700 dark:text-white"
           />
         </div>
 
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <Phone size={16} />
-            <label htmlFor="phone" className="text-sm font-medium">
+            <Phone size={16} className="text-pionexia-blue" />
+            <label htmlFor="phone" className="text-sm font-medium dark:text-gray-200">
               Téléphone
             </label>
           </div>
@@ -134,19 +136,20 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleChange}
             placeholder="+212 XXX XXX XXX"
+            className="dark:bg-pionexia-dark-secondary/50 dark:border-gray-700 dark:text-white"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="budget" className="block text-sm font-medium mb-2">
+        <label htmlFor="budget" className="block text-sm font-medium mb-2 dark:text-gray-200">
           Budget estimé
         </label>
         <Select value={formData.budget} onValueChange={handleSelectChange}>
-          <SelectTrigger>
+          <SelectTrigger className="dark:bg-pionexia-dark-secondary/50 dark:border-gray-700 dark:text-white">
             <SelectValue placeholder="Sélectionnez votre budget" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="dark:bg-pionexia-dark dark:border-gray-700">
             <SelectItem value="less-5k">Moins de 5 000€</SelectItem>
             <SelectItem value="5k-10k">5 000€ - 10 000€</SelectItem>
             <SelectItem value="10k-25k">10 000€ - 25 000€</SelectItem>
@@ -157,7 +160,7 @@ const ContactForm = () => {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2">
+        <label htmlFor="message" className="block text-sm font-medium mb-2 dark:text-gray-200">
           Message <span className="text-red-500">*</span>
         </label>
         <Textarea
@@ -168,12 +171,13 @@ const ContactForm = () => {
           placeholder="Décrivez votre projet..."
           rows={5}
           required
+          className="dark:bg-pionexia-dark-secondary/50 dark:border-gray-700 dark:text-white resize-none"
         />
       </div>
 
       <Button 
         type="submit" 
-        className="w-full bg-pionexia-blue hover:bg-pionexia-blue/90" 
+        className="w-full bg-pionexia-blue hover:bg-pionexia-blue/90 text-white" 
         disabled={isSubmitting}
       >
         {isSubmitting ? (

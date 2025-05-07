@@ -61,29 +61,28 @@ const handler = async (req: Request): Promise<Response> => {
       <p>${data.description.replace(/\n/g, '<br>')}</p>
     `;
 
-    // Utiliser Resend pour envoyer l'email (ou simulation de développement)
-    try {
-      const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
-      const { data: emailData, error } = await resend.emails.send({
-        from: "Pionexia Devis <onboarding@resend.dev>",
-        to: ["pdg.pionexia@gmail.com"],
-        subject: `Nouvelle demande de devis de ${data.name}`,
-        html: emailContent,
-        reply_to: data.email
-      });
-      
-      console.log("Email envoyé avec succès:", emailData);
-      
-      if (error) {
-        throw new Error(`Erreur Resend: ${error.message}`);
-      }
-    } catch (emailError) {
-      console.error("Erreur lors de l'envoi de l'email:", emailError);
-      
-      // En mode développement, simuler un envoi réussi et logger le contenu
-      console.log("Simulation d'envoi d'email avec le contenu:");
-      console.log(emailContent);
+    // Utiliser Resend pour envoyer l'email
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) {
+      console.error("RESEND_API_KEY is not set");
+      throw new Error("Configuration du serveur d'email manquante");
     }
+
+    const resend = new Resend(resendApiKey);
+    const { data: emailData, error } = await resend.emails.send({
+      from: "Pionexia Devis <onboarding@resend.dev>",
+      to: ["pdg.pionexia@gmail.com"], // Corrigé l'adresse email - assurez-vous qu'elle est correcte
+      subject: `Nouvelle demande de devis de ${data.name}`,
+      html: emailContent,
+      reply_to: data.email
+    });
+    
+    if (error) {
+      console.error("Erreur Resend:", error);
+      throw new Error(`Erreur d'envoi: ${error.message}`);
+    }
+    
+    console.log("Email envoyé avec succès:", emailData);
 
     // Retournez une réponse de succès
     return new Response(
