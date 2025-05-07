@@ -9,15 +9,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { SendMail, User, Building, Phone, MessageSquare } from "lucide-react";
+import { Mail, User, Building, Phone, MessageSquare } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { createClient } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations/supabase/client";
 
 const Devis = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
-  const supabase = createClient();
   
   const [step, setStep] = useState(1);
   const totalSteps = 3;
@@ -167,7 +166,7 @@ const Devis = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="email" className="flex items-center gap-2 mb-2">
-                        <SendMail size={16} />
+                        <Mail size={16} />
                         Email professionnel *
                       </Label>
                       <Input

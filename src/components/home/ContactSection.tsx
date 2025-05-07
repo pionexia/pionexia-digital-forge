@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { Button } from "@/components/ui/button";
@@ -7,12 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, Phone, MapPin, Send, User } from "lucide-react";
-import { createClient } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactSection = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
-  const supabase = createClient();
   
   const [formData, setFormData] = useState({
     name: "",
