@@ -296,10 +296,10 @@ const Devis = () => {
                         <SelectValue placeholder="Sélectionnez un délai" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="urgent">Urgent (< 2 semaines)</SelectItem>
+                        <SelectItem value="urgent">Urgent ({'<'} 2 semaines)</SelectItem>
                         <SelectItem value="soon">Rapide (2-4 semaines)</SelectItem>
                         <SelectItem value="normal">Standard (1-2 mois)</SelectItem>
-                        <SelectItem value="flexible">Flexible (> 2 mois)</SelectItem>
+                        <SelectItem value="flexible">Flexible ({'>'} 2 mois)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
