@@ -81,8 +81,8 @@ const handler = async (req: Request): Promise<Response> => {
     const resend = new Resend(resendApiKey);
     const { data: emailData, error } = await resend.emails.send({
       from: "Pionexia Contact <onboarding@resend.dev>",
-      to: ["pdg.pionexia@gmail.com"],
-      subject: `Nouveau message de contact de ${data.name}`,
+      to: ["ibrahimalo407@gmail.com"], // Temporairement changé vers votre email vérifié
+      subject: `Nouveau message de contact de ${data.name} - À transférer vers pdg.pionexia@gmail.com`,
       html: emailContent,
       reply_to: data.email
     });
